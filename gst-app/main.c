@@ -12,7 +12,16 @@ static void prepare_buffer(GstAppSrc* appsrc) {
 
   GstBuffer *buffer = gst_buffer_new_wrapped_full( 0, (gpointer)default_klv, sizeof(default_klv), 0, sizeof(default_klv), NULL, NULL );
 
+
+  GST_BUFFER_PTS (buffer) = timestamp;
+  //Send the KLV data every 1/4 second
+  GST_BUFFER_DURATION (buffer) = gst_util_uint64_scale_int (1, GST_SECOND, 4);
+
+  timestamp += GST_BUFFER_DURATION (buffer);
+
+
   ret = gst_app_src_push_buffer(appsrc, buffer);
+
 
   if (ret != GST_FLOW_OK) {
     /* something wrong, stop pushing */
