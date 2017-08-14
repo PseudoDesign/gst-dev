@@ -39,7 +39,7 @@ def config_base
     end
     if $cc != cfg
       sh "./autogen.sh"
-      sh "./configure --enable-gtk-doc --enable-iso-codes --enable-orc --with-opengl=yes"
+      sh "./configure --disable-gtk-doc --enable-iso-codes --enable-orc --with-opengl=yes"
       File.write('.config_target', $cc)
     end
   end
@@ -86,7 +86,7 @@ def config_module(plugin)
     if $cc != cfg
       # sh "module load gstreamer/local/gstreamer/"
       sh "./autogen.sh"
-      sh "./configure  --enable-gtk-doc --enable-iso-codes --enable-orc --with-opengl=yes"
+      sh "./configure  --disable-gtk-doc --enable-iso-codes --enable-orc --with-opengl=yes"
       File.write('.config_target', $cc)
     end
   end
