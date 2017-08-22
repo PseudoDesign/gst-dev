@@ -3,7 +3,7 @@ $remote_target = ENV["REMOTE_TARGET"] || "192.168.0.4"
 $remote_user = ENV["REMOTE_USER"] || "root"
 $home = ENV["HOME"] || "/home/vagrant"
 
-target_plugins = ['gstreamer-plugins-base', 'gstreamer-plugins-bad']
+target_plugins = ['gstreamer-plugins-base', 'gstreamer-plugins-good', 'gstreamer-plugins-bad']
 
 def get_install_dir(plugin)
   File.join($home, "build", $cc, plugin)

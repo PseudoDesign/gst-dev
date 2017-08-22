@@ -25,6 +25,9 @@ guest_info:
     project_root: ../
 features:
   - name: git
+    host: https://anongit.freedesktop.org/git/gstreamer/gst-plugins-good.git
+    project: gstreamer-plugins-good
+  - name: git
     host: https://anongit.freedesktop.org/git/gstreamer/gst-plugins-bad.git
     project: gstreamer-plugins-bad
   - name: git
