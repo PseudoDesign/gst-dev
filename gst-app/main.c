@@ -26,6 +26,7 @@ main (int   argc,
   jpegenc = gst_element_factory_make("jpegenc", "jpg_encoder");
 
   sink = gst_element_factory_make("filesink", "sink");
+  g_object_set(G_OBJECT(sink), "location", "/share/jaypeg_sink.jpg", NULL);
 
   gst_bin_add_many (GST_BIN(pipeline), source, sink, jpegenc, jpegdec, NULL);
 
