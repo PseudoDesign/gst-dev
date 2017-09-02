@@ -25,6 +25,8 @@ guest_info:
     # The root folder of the project, relative to the Vagrantfile
     project_root: ../
 features:
+  - name: gem
+    target: ceedling
   - name: git
     host: https://anongit.freedesktop.org/git/gstreamer/gst-plugins-good.git
     project: gstreamer-plugins-good
