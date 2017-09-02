@@ -21,6 +21,7 @@ guest_info:
     # in other distros.  Use "vagrant" for Trusty and earlier and "ubuntu"
     # for Xenial and later
     default_user: vagrant
+    is_release: true
     # The root folder of the project, relative to the Vagrantfile
     project_root: ../
 features:
