@@ -5,7 +5,7 @@ $home = ENV["HOME"] || "/home/vagrant"
 
 target_plugins = ['gstreamer-plugins-base', 'gstreamer-plugins-good', 'gstreamer-plugins-bad']
 
-require "/vagrant/borglib.rb"
+require "/vagrant/borgrake.rb"
 
 def get_install_dir(plugin)
   File.join($home, "build", $cc, plugin)

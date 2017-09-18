@@ -1,36 +1,51 @@
----
 guest_info:
-  name: Test Vagrant Instance++
+  # This is the name that the VirtualBox instance will use
+  name: "Test Vagrant Instance++"
+  # System memory allocated to this instance
   memory: 2048
+  # CPU threads available to this instance
   threads: 2
-  os: debian
-  base_box: bento/ubuntu-16.04
+  # The name of the os/distro of this system.  Used to determine which
+  # subdirectory of "provision" features are used by the provisioning scripts
+  os: "debian"
+  # The base box name as required by HashiCorp Atlas.
+  # See https://atlas.hashicorp.com/
+  base_box: "bento/ubuntu-16.04"
+  # Use "true" if you want the VirtualBox GUI window to be generated.
+  # Use "false" for a headless instance.
+  # Note that you'll probably need to install a desktop environment if
+  # you use "true" here -- adding "lubuntu_desktop" to the "package_manager"
+  # feature below is an easy solution
   use_gui: false
+  # The default username.  This has recently changed in Ubuntu and YMMV
+  # in other distros.  Use "vagrant" for Trusty and earlier and "ubuntu"
+  # for Xenial and later
   default_user: vagrant
-  project_root: "../"
+  # The root folder of the project, relative to the Vagrantfile
+  project_root: ../
 features:
-- name: gem
-  target: ceedling
-- name: package_manager
-  target: rake gcc libgl1-mesa-dev mesa-common-dev environment-modules gcc-arm-linux-gnueabihf
-    build-essential automake pkg-config autopoint libtool gtk-doc-tools libglib2.0-dev
-    gtk-doc-tools liborc-0.4-0 liborc-0.4-dev libvorbis-dev libcdparanoia-dev libcdparanoia0
-    cdparanoia libvisual-0.4-0 libvisual-0.4-dev libvisual-0.4-plugins libvisual-projectm
-    vorbis-tools vorbisgain libopus-dev libopus-doc libopus0 libopusfile-dev libopusfile0
-    libtheora-bin libtheora-dev libtheora-doc libvpx-dev libvpx-doc libvpx3 libqt5gstreamer-1.0-0
-    libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libflac++-dev libavc1394-dev
-    libraw1394-dev libraw1394-tools libraw1394-doc libraw1394-tools libtag1-dev libtagc0-dev
-    libwavpack-dev wavpack bison flex
+  - name: gem
+    target: ceedling
+  - name: package_manager
+    target: rake gcc libgl1-mesa-dev mesa-common-dev environment-modules gcc-arm-linux-gnueabihf
+      build-essential automake pkg-config autopoint libtool gtk-doc-tools libglib2.0-dev
+      gtk-doc-tools liborc-0.4-0 liborc-0.4-dev libvorbis-dev libcdparanoia-dev libcdparanoia0
+      cdparanoia libvisual-0.4-0 libvisual-0.4-dev libvisual-0.4-plugins libvisual-projectm
+      vorbis-tools vorbisgain libopus-dev libopus-doc libopus0 libopusfile-dev libopusfile0
+      libtheora-bin libtheora-dev libtheora-doc libvpx-dev libvpx-doc libvpx3 libqt5gstreamer-1.0-0
+      libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libflac++-dev libavc1394-dev
+      libraw1394-dev libraw1394-tools libraw1394-doc libraw1394-tools libtag1-dev libtagc0-dev
+      libwavpack-dev wavpack bison flex
 sources:
-    provider: git
-    host: https://anongit.freedesktop.org/git/gstreamer/gst-plugins-good.git
   - name: gstreamer-plugins-good
     provider: git
-    host: https://anongit.freedesktop.org/git/gstreamer/gst-plugins-bad.git
+    host: https://anongit.freedesktop.org/git/gstreamer/gst-plugins-good.git
   - name: gstreamer-plugins-bad
     provider: git
-    host: https://anongit.freedesktop.org/git/gstreamer/gst-plugins-base.git
+    host: https://anongit.freedesktop.org/git/gstreamer/gst-plugins-bad.git
   - name: gstreamer-plugins-base
     provider: git
-    host: git://anongit.freedesktop.org/git/gstreamer/gstreamer
+    host: https://anongit.freedesktop.org/git/gstreamer/gst-plugins-base.git
   - name: gstreamer
+    provider: git
+    host: git://anongit.freedesktop.org/git/gstreamer/gstreamer
