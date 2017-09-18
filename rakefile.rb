@@ -5,6 +5,8 @@ $home = ENV["HOME"] || "/home/vagrant"
 
 target_plugins = ['gstreamer-plugins-base', 'gstreamer-plugins-good', 'gstreamer-plugins-bad']
 
+require "/vagrant/borglib.rb"
+
 def get_install_dir(plugin)
   File.join($home, "build", $cc, plugin)
 end
@@ -13,9 +15,11 @@ def get_build_dir(plugin)
   File.join($home, plugin)
 end
 
-def install_remote
+task :get_sources => [:borg_install_sources]
 
-end
+task :update_sources => [:borg_update_sources]
+
+task :production_release => [:borg_build_production]
 
 task :install_base => [:build_base] do
   if $cc == "gcc"
@@ -63,7 +67,7 @@ task :clean_modules do
   }
 end
 
-task :build_base do
+task :build_base => [:update_sources] do
   plugin = "gstreamer"
   install_dir = get_install_dir(plugin)
   build_dir = get_build_dir(plugin)
@@ -104,7 +108,7 @@ task :install_modules => [:build_modules] do
   end
 end
 
-task :build_modules => [:install_base] do
+task :build_modules => [:update_sources, :install_base] do
   target_plugins.each { |plugin|
     install_dir = get_install_dir(plugin)
     build_dir = get_build_dir(plugin)
